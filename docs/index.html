@@ -1,211 +1,316 @@
-<!DOCTYPE html>
+[O<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>蓝色peach的导航页</title>
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人导航 | My Hub</title>
+    <!-- 字体与图标库 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <style>
-    /* Reset and Basic Styles */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #fff;
-        background: url('335.avif') no-repeat center center fixed;
-        background-size: cover;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
-    .container {
-        width: 95%; /* 更广泛的布局 */
-        max-width: 1400px; /* 更大的最大宽度 */
-        background-color: rgba(0, 0, 0, 0.7);
-        border-radius: 25px;
-        padding: 40px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px; /* 更大的列间距 */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
-    .left-sidebar, .center-content, .right-sidebar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .logo {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-bottom: 25px;
-        overflow: hidden; /* 裁剪图片 */
-    }
-    .logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* 保持图片比例 */
-    }
-    .quote {
-        font-style: italic;
-        margin-bottom: 25px;
-        border-left: 4px solid #fff;
-        padding-left: 20px;
-        text-align: left;
-    }
-    .social-icons {
-        display: flex;
-        gap: 15px; /* 图标间距 */
-    }
-    .social-icons a {
-        color: #fff;
-        font-size: 1.4rem;
-        text-decoration: none;
-        transition: transform 0.2s;
-    }
-    .social-icons a:hover {
-        transform: scale(1.2); /* 悬停时放大 */
-    }
-    .section-title {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-        color: #eee;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 8px;
-        width: 100%;
-    }
-    .link-buttons {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3列 */
-        gap: 20px;
-        width: 100%; /* 占满父元素宽度 */
-    }
-    .link-button {
-        background-color: rgba(255, 255, 255, 0.25);
-        border: none;
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
-        cursor: pointer;
-        transition: background-color 0.3s, transform 0.2s;
-        text-decoration: none;
-        color: #fff;
-        display: flex; /* 使用 Flexbox 布局 */
-        flex-direction: column; /* 垂直排列 */
-        align-items: center; /* 水平居中 */
-        justify-content: center; /* 垂直居中 */
-    }
-    .link-button:hover {
-        background-color: rgba(255, 255, 255, 0.4);
-        transform: translateY(-5px); /* 悬停时上移 */
-    }
-    .link-button i {
-        font-size: 24px;
-        margin-bottom: 8px;
-    }
-    .link-button span{
-        font-size: 1rem;
-    }
-    .date-time {
-        background-color: rgba(255, 255, 255, 0.25);
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 25px;
-        min-width: 200px; /* 最小宽度 */
-    }
-    .date, .time {
-        margin-bottom: 6px;
-    }
-    .time {
-        font-size: 2.2rem;
-        font-weight: bold;
-    }
-    footer {
-        position: absolute;
-        bottom: 15px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        color: #ddd;
-        font-size: 0.9rem;
-    }
-    footer a {
-        color: #fff;
-        text-decoration: none;
-    }
-    .spacer {
-        flex-grow: 1; /* 让空白占位符填充剩余空间 */
-    }
-</style>
+        :root {
+            --accent-color: #4a90e2;
+            --text-main: #2d3436;
+            --text-sub: #88929b; /* 调轻了副文本颜色 */
+            --glass: rgba(255, 255, 255, 0.7);
+            --border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
 
+        /* 核心布局 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, "PingFang SC", sans-serif;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.6;
+        }
+
+        /* 动态流动背景 */
+        .bg-animate {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #f8f9fa, #e9ecef, #f1f3f5, #e7f5ff);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 头部区域 */
+        header {
+            width: 100%;
+            max-width: 900px;
+            padding: 60px 20px 40px;
+            text-align: center;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        #clock {
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: -2px;
+            margin-bottom: 8px;
+        }
+
+        .date-box { margin-bottom: 30px; }
+        .date-cn { font-size: 1.1rem; color: var(--text-main); }
+        .date-en { font-size: 0.85rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; }
+
+        .profile { margin-top: 25px; }
+        .avatar {
+            width: 85px; height: 85px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: var(--shadow);
+            margin-bottom: 15px;
+            transition: transform 0.4s ease;
+        }
+        .avatar:hover { transform: scale(1.1) rotate(5deg); }
+        .profile h1 { font-size: 1.5rem; font-weight: 600; }
+        .profile p { color: var(--text-sub); font-size: 0.9rem; max-width: 450px; margin: 5px auto; }
+
+        /* 主体区域 */
+        main {
+            flex: 1; /* 自动撑开 */
+            width: 100%;
+            max-width: 1000px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 搜索框 */
+        .search-container {
+            width: 100%;
+            max-width: 550px;
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+        .search-bar {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 6px 6px 6px 20px;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .search-bar input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+        .search-btns { display: flex; gap: 4px; }
+        .search-btns button {
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            background: rgba(0,0,0,0.04);
+            color: var(--text-sub);
+            transition: 0.3s;
+        }
+        .search-btns button:hover { background: var(--accent-color); color: white; }
+
+        /* 导航网格 */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+        .icon-box {
+            width: 50px; height: 50px;
+            background: #fff;
+            border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 20px;
+            color: var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        .card-content h3 { font-size: 1.05rem; margin-bottom: 4px; }
+        .card-content p { font-size: 0.85rem; color: var(--text-sub); }
+
+        /* 极简底部样式 - 优化后的部分 */
+        footer {
+            width: 100%;
+            padding: 25px 20px; /* 减小了内边距 */
+            font-size: 0.75rem; /* 减小了字号 */
+            color: var(--text-sub);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* 手机端自动换行 */
+            gap: 10px;
+            opacity: 0.8;
+        }
+        footer .dot { opacity: 0.3; padding: 0 5px; }
+        footer a { color: var(--text-sub); text-decoration: none; transition: 0.3s; }
+        footer a:hover { color: var(--accent-color); }
+        .footer-item { display: flex; align-items: center; gap: 4px; }
+
+        /* 入场动画 */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 移动端适配 */
+        @media (max-width: 600px) {
+            #clock { font-size: 2.8rem; }
+            .nav-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; gap: 5px; } /* 手机端改为垂直排列 */
+            footer .dot { display: none; } /* 手机端隐藏圆点 */
+        }
+    </style>
+</head>
 <body>
-    <div class="container">
-        <div class="left-sidebar">
-            <div class="spacer"></div> 
-            <div class="logo">
-                <img src="https://q.qlogo.cn/headimg_dl?dst_uin=1306360483&spec=640" alt="My 蓝色 peach">
-            </div>
-            <div class="quote">
-                <p>奈何桥下，回溯这人世间.</p>
-                <p>你还记得那个人吗？</p>
-            </div>
-            <div class="social-icons">
-                <!-- 4. 联系方式 -->
-                <!-- QQ: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1306360483 -->
-                <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1306360483"><i class="fab fa-qq"></i></a>
-            </div>
-            <div class="spacer"></div>
+
+    <div class="bg-animate"></div>
+
+    <header>
+        <div id="clock">00:00:00</div>
+        <div class="date-box">
+            <div id="date-cn" class="date-cn">加载中...</div>
+            <div id="date-en" class="date-en">Loading...</div>
         </div>
 
-        <div class="center-content">
-            <h2 class="section-title">网站列表</h2>
-            <div class="link-buttons">
-                <!-- 3. 常用链接 -->
-                <a href="http://blog.lansepeach.cn" class="link-button"><i class="fas fa-blog"></i><span>博客</span></a>
-                <a href="http://cloud.lansepeach.cn:5212/" class="link-button"><i class="fas fa-cloud"></i><span>私有云</span></a>
-                <a href="https://xa.lansepeach.cn/" class="link-button"><i class="fas fa-hdd"></i><span>私有存储</span></a>
-                <a href="http://ai.lansepeach.cn" class="link-button"><i class="fas fa-robot"></i><span>AI 项目</span></a>
-                <a href="https://jk.lansepeach.cn/" class="link-button"><i class="fas fa-chart-line"></i><span>服务器监控</span></a>
-                <a href="https://jq.qq.com/?_wv=1027&k=5LHiiU6" class="link-button"><i class="fa-solid fa-user-group"></i><span>交流群</span></a>
-                <!-- 新增 MC 我的世界链接 -->
-                <a href="https://mc.lansepeach.cn/" class="link-button"><i class="fas fa-cubes"></i><span>蓝色peach的我的世界</span></a>
+        <div class="profile">
+            <img src="https://q.qlogo.cn/headimg_dl?dst_uin=1306360483&spec=640" alt="Avatar" class="avatar">
+            <h1>蓝色peach</h1>
+            <p>奈何桥下，回溯这人世间.你还记得那个人吗？</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- 搜索区域 -->
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="输入关键字搜索..." onkeydown="if(event.keyCode==13) search('bing')">
+                <div class="search-btns">
+                    <button onclick="search('google')">Google</button>
+                    <button onclick="search('bing')">Bing</button>
+                </div>
             </div>
         </div>
 
-        <div class="right-sidebar">
-            <div class="spacer"></div>
-            <div class="date-time">
-                <div class="date"></div>
-                <div class="time"></div>
-            </div>
-             <div class="spacer"></div>
+        <!-- 导航区域 -->
+        <div class="nav-grid">
+            <a href="http://blog.lansepeach.cn/" class="card">
+                <div class="icon-box"><i data-lucide="book-open"></i></div>
+                <div class="card-content">
+                    <h3>个人博客</h3>
+                    <p>分享技术文章与生活随笔</p>
+                </div>
+            </a>
+            <a href="https://jk.lansepeach.cn/" class="card">
+                <div class="icon-box"><i data-lucide="activity"></i></div>
+                <div class="card-content">
+                    <h3>服务监控</h3>
+                    <p>实时查看服务器运行状态</p>
+                </div>
+            </a>
+            <a href="http://cloud.lansepeach.cn:5212/" class="card">
+                <div class="icon-box"><i data-lucide="hard-drive"></i></div>
+                <div class="card-content">
+                    <h3>私有云盘</h3>
+                    <p>基于云端安全存储个人文件</p>
+                </div>
+            </a>
+            <a href="https://mc.lansepeach.cn/" class="card">
+                <div class="icon-box"><i data-lucide="Gamepad"></i></div>
+                <div class="card-content">
+                    <h3>我的世界服务器</h3>
+                    <p>欢迎来到我们的世界</p>
+                </div>
+            </a>
+            <a href="http://ai.lansepeach.cn/" class="card">
+                <div class="icon-box"><i data-lucide="terminal"></i></div>
+                <div class="card-content">
+                    <h3>ai项目实验室</h3>
+                    <p>正在孵化中的有趣 Demo</p>
+                </div>
+            </a>
+            <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1306360483" class="card">
+                <div class="icon-box"><i data-lucide="mail"></i></div>
+                <div class="card-content">
+                    <h3>联系方式</h3>
+                    <p>如有合作意向欢迎随时联系</p>
+                </div>
+            </a>
         </div>
-    </div>
+    </main>
 
     <footer>
-        Copyright © 2020 - <span id="current-year"></span> & Made by My 蓝色 peach & <a href="http://beian.miit.gov.cn">皖ICP备17006084号-2</a>
+        <div class="footer-item">&copy; 2020 - <span id="year"></span> 蓝色peach</div>
+        <span class="dot">•</span>
+        <div class="footer-item">
+            <a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备17006084号-2</a>
+        </div>
+        <span class="dot">•</span>
+        <div class="footer-item">Powered by Gemini AI</div>
     </footer>
 
     <script>
+        lucide.createIcons();
+
         function updateTime() {
             const now = new Date();
-            const beijingTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
-            const year = beijingTime.getFullYear();
-            const month = String(beijingTime.getMonth() + 1).padStart(2, '0');
-            const day = String(beijingTime.getDate()).padStart(2, '0');
-            const hours = String(beijingTime.getHours()).padStart(2, '0');
-            const minutes = String(beijingTime.getMinutes()).padStart(2, '0');
-            const seconds = String(beijingTime.getSeconds()).padStart(2, '0');
-            const dayOfWeek = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][beijingTime.getDay()];
-
-            document.querySelector('.date').textContent = `${year} 年 ${month} 月 ${day} 日 ${dayOfWeek}`;
-            document.querySelector('.time').textContent = `${hours}:${minutes}:${seconds}`;
-            document.getElementById('current-year').textContent = year; // 更新页脚年份
-
+            document.getElementById('clock').innerText = now.toLocaleTimeString('zh-CN', { hour12: false });
+            const cnOptions = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            document.getElementById('date-cn').innerText = now.toLocaleDateString('zh-CN', cnOptions);
+            const enOptions = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            document.getElementById('date-en').innerText = now.toLocaleDateString('en-US', enOptions);
+            document.getElementById('year').innerText = now.getFullYear();
         }
 
-        updateTime(); // 首次加载时更新时间
-        setInterval(updateTime, 1000); // 每秒更新一次
+        function search(engine) {
+            const query = document.getElementById('search-input').value;
+            if (!query) return;
+            const url = engine === 'google' 
+                ? `https://www.google.com/search?q=${encodeURIComponent(query)}`
+                : `https://cn.bing.com/search?q=${encodeURIComponent(query)}`;
+            window.open(url, '_blank');
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
     </script>
 </body>
 </html>
