@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>蓝色peach的导航页</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    /* Reset and Basic Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        background: url('335.avif') no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .container {
+        width: 95%; /* 更广泛的布局 */
+        max-width: 1400px; /* 更大的最大宽度 */
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 25px;
+        padding: 40px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px; /* 更大的列间距 */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+    .left-sidebar, .center-content, .right-sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 25px;
+        overflow: hidden; /* 裁剪图片 */
+    }
+    .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 保持图片比例 */
+    }
+    .quote {
+        font-style: italic;
+        margin-bottom: 25px;
+        border-left: 4px solid #fff;
+        padding-left: 20px;
+        text-align: left;
+    }
+    .social-icons {
+        display: flex;
+        gap: 15px; /* 图标间距 */
+    }
+    .social-icons a {
+        color: #fff;
+        font-size: 1.4rem;
+        text-decoration: none;
+        transition: transform 0.2s;
+    }
+    .social-icons a:hover {
+        transform: scale(1.2); /* 悬停时放大 */
+    }
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #eee;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 8px;
+        width: 100%;
+    }
+    .link-buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3列 */
+        gap: 20px;
+        width: 100%; /* 占满父元素宽度 */
+    }
+    .link-button {
+        background-color: rgba(255, 255, 255, 0.25);
+        border: none;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        text-decoration: none;
+        color: #fff;
+        display: flex; /* 使用 Flexbox 布局 */
+        flex-direction: column; /* 垂直排列 */
+        align-items: center; /* 水平居中 */
+        justify-content: center; /* 垂直居中 */
+    }
+    .link-button:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+        transform: translateY(-5px); /* 悬停时上移 */
+    }
+    .link-button i {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    .link-button span{
+        font-size: 1rem;
+    }
+    .date-time {
+        background-color: rgba(255, 255, 255, 0.25);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 25px;
+        min-width: 200px; /* 最小宽度 */
+    }
+    .date, .time {
+        margin-bottom: 6px;
+    }
+    .time {
+        font-size: 2.2rem;
+        font-weight: bold;
+    }
+    footer {
+        position: absolute;
+        bottom: 15px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: #ddd;
+        font-size: 0.9rem;
+    }
+    footer a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .spacer {
+        flex-grow: 1; /* 让空白占位符填充剩余空间 */
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="left-sidebar">
+            <div class="spacer"></div> 
+            <div class="logo">
+                <img src="https://q.qlogo.cn/headimg_dl?dst_uin=1306360483&spec=640" alt="My 蓝色 peach">
+            </div>
+            <div class="quote">
+                <p>奈何桥下，回溯这人世间.</p>
+                <p>你还记得那个人吗？</p>
+            </div>
+            <div class="social-icons">
+                <!-- 4. 联系方式 -->
+                <!-- QQ: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1306360483 -->
+                <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1306360483"><i class="fab fa-qq"></i></a>
+            </div>
+            <div class="spacer"></div>
+        </div>
+
+        <div class="center-content">
+            <h2 class="section-title">网站列表</h2>
+            <div class="link-buttons">
+                <!-- 3. 常用链接 -->
+                <a href="http://blog.lansepeach.cn" class="link-button"><i class="fas fa-blog"></i><span>博客</span></a>
+                <a href="http://cloud.lansepeach.cn:5212/" class="link-button"><i class="fas fa-cloud"></i><span>私有云</span></a>
+                <a href="https://xa.lansepeach.cn/" class="link-button"><i class="fas fa-hdd"></i><span>私有存储</span></a>
+                <a href="http://ai.lansepeach.cn" class="link-button"><i class="fas fa-robot"></i><span>AI 项目</span></a>
+                <a href="https://jk.lansepeach.cn/" class="link-button"><i class="fas fa-chart-line"></i><span>服务器监控</span></a>
+                <a href="https://jq.qq.com/?_wv=1027&k=5LHiiU6" class="link-button"><i class="fa-solid fa-user-group"></i><span>交流群</span></a>
+                <!-- 新增 MC 我的世界链接 -->
+                <a href="https://mc.lansepeach.cn/" class="link-button"><i class="fas fa-cubes"></i><span>蓝色peach的我的世界</span></a>
+            </div>
+        </div>
+
+        <div class="right-sidebar">
+            <div class="spacer"></div>
+            <div class="date-time">
+                <div class="date"></div>
+                <div class="time"></div>
+            </div>
+             <div class="spacer"></div>
+        </div>
+    </div>
+
+    <footer>
+        Copyright © 2020 - <span id="current-year"></span> & Made by My 蓝色 peach & <a href="http://beian.miit.gov.cn">皖ICP备17006084号-2</a>
+    </footer>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const beijingTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
+            const year = beijingTime.getFullYear();
+            const month = String(beijingTime.getMonth() + 1).padStart(2, '0');
+            const day = String(beijingTime.getDate()).padStart(2, '0');
+            const hours = String(beijingTime.getHours()).padStart(2, '0');
+            const minutes = String(beijingTime.getMinutes()).padStart(2, '0');
+            const seconds = String(beijingTime.getSeconds()).padStart(2, '0');
+            const dayOfWeek = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][beijingTime.getDay()];
+
+            document.querySelector('.date').textContent = `${year} 年 ${month} 月 ${day} 日 ${dayOfWeek}`;
+            document.querySelector('.time').textContent = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('current-year').textContent = year; // 更新页脚年份
+
+        }
+
+        updateTime(); // 首次加载时更新时间
+        setInterval(updateTime, 1000); // 每秒更新一次
+    </script>
+</body>
+</html>
